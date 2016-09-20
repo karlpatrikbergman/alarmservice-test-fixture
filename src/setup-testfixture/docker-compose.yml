@@ -1,0 +1,45 @@
+version: "2"
+services:
+  alarmservice:
+    image: se.infinera.metro/alarm-service:1.0-SNAPSHOT
+    restart: unless-stopped
+    container_name: alarmservice
+    environment:
+      SPRING_PROFILES_ACTIVE: docker-compose
+    ports:
+      - 8080:8080
+    depends_on:
+    - alarmservice_db
+    links:
+    - alarmservice_db
+    entrypoint: ./wait-for-it.sh
+    command: alarmservice_db:3306 --timeout=20 -- ./entrypoint.sh
+  alarmservice_db:
+    image: mariadb:latest
+    container_name: alarmservice_db
+    ports:
+      - 3306
+    environment:
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_DATABASE: alarmservice
+      MYSQL_ROOT_PASSWORD: root
+  node1:
+    image: artifactory.transmode.se/tm3k/trunk-hostenv
+    container_name: node1
+    ports:
+      - 80
+  node2:
+    image: artifactory.transmode.se/tm3k/trunk-hostenv
+    container_name: node2
+    ports:
+      - 80
+  nodes_setup:
+    build: nodes_setup
+    container_name: nodes_setup
+    depends_on:
+      - node1
+      - node2
+    links:
+      - node1
+      - node2

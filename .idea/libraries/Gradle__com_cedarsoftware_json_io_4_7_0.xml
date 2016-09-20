@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.cedarsoftware:json-io:4.7.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cedarsoftware/json-io/4.7.0/2dc33a5805f5b7bc4b84c98fc8e9fde9c245c028/json-io-4.7.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cedarsoftware/json-io/4.7.0/e49714a585a2342f6a8c4325601c5ea8c7cb186a/json-io-4.7.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
