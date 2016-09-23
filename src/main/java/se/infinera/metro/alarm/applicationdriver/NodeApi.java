@@ -5,7 +5,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
-import se.infinera.metro.microservice.alarm.controller.dto.NodeDTO;
+import se.infinera.metro.service.alarm.controller.dto.NodeDTO;
 
 import java.util.List;
 

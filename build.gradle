@@ -60,7 +60,7 @@ repositories {
 }
 
 dependencies {
-    compile 'se.infinera.metro.service.alarm:alarm-service-api:1.0-SNAPSHOT'
+    compile 'se.infinera.metro.service.alarm:alarmservice-api:1.0-SNAPSHOT'
     compile('org.springframework.boot:spring-boot-starter-web:1.4.0.RELEASE')
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.2'
     compile('com.github.karlpatrikbergman:java-utilities:master')
