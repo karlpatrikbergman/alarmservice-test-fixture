@@ -19,7 +19,7 @@ function login() {
                 echo "${session_id}";
                 break;
             fi
-            sleep 2;
+            sleep 5;
         done
 }
 
@@ -37,6 +37,6 @@ function add_board() {
                 echo "${response_code}"
                 break
             fi
-            sleep 2;
+            sleep 5;
         done
 }

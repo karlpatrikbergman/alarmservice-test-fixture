@@ -1,10 +1,14 @@
-package se.infinera.metro.alarm.applicationdriver;
+package se.infinera.metro.alarm.acceptancetest.applicationdriver;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import se.infinera.metro.alarm.acceptancetest.configuration.TestConfiguration;
+import se.infinera.metro.alarm.acceptancetest.testimplementation.AlarmServiceDTO;
 import se.infinera.metro.service.alarm.controller.dto.NodeDTO;
 
 import java.util.List;
@@ -16,22 +20,28 @@ import java.util.List;
  *  completely dispense with the acceptance criteria layer and express the
  *  acceptance criteria in the implementation of the test.
  */
+@Slf4j
+@Component
 public class NodeApi {
-
-    private final String alarmServiceHost = "localhost";
-    private final long alarmServicePort = 8080;
+    private final RestTemplate restTemplate;
+    private final String alarmServiceHost;
+    private final long alarmServicePort;
 
     @Autowired
-    RestTemplate restTemplate;
+    public NodeApi(RestTemplate restTemplate, TestConfiguration testConfiguration) {
+        this.restTemplate = restTemplate;
+        AlarmServiceDTO alarmServiceConfig = testConfiguration.getAlarmServiceConfiguration();
+        this.alarmServiceHost = alarmServiceConfig.getHost();
+        this.alarmServicePort = alarmServiceConfig.getPort();
+    }
 
     public List<NodeDTO> getNodes() {
         return restTemplate.exchange(
-                getAlarmServiceNodesUri(),
-                HttpMethod.GET,
-                null,
-                new ParameterizedTypeReference<List<NodeDTO>>() {
-                }
-        )
+                    getAlarmServiceNodesUri(),
+                    HttpMethod.GET,
+                    null,
+                    new ParameterizedTypeReference<List<NodeDTO>>() {}
+                )
                 .getBody();
     }
 

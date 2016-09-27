@@ -1,0 +1,15 @@
+Workflow:
+
+1.
+Make sure you have an alarmservice docker image available.
+In project alarmservice run:
+    ./gradlew clean build buildDocker
+Find image:
+    docker images
+
+2.
+Make sure you have an alarmservice-acceptance-test docker image available
+In this project run:
+    ./gradlew clean fatJar buildDocker
+Find image:
+    docker images

@@ -1,13 +1,15 @@
 version: "2"
 services:
   alarmservice:
-    image: se.infinera.metro/alarm-service:1.0-SNAPSHOT
+    image: se.infinera.metro.service.alarm/alarmservice:1.0-SNAPSHOT
     restart: unless-stopped
     container_name: alarmservice
     environment:
       SPRING_PROFILES_ACTIVE: docker-compose
     ports:
       - 8080:8080
+    networks:
+      alarmservice_network:
     depends_on:
     - alarmservice_db
     links:
@@ -19,6 +21,8 @@ services:
     container_name: alarmservice_db
     ports:
       - 3307:3306 #<port-on-host>:<port-on-container>
+    networks:
+        alarmservice_network:
     environment:
       MYSQL_USER: admin
       MYSQL_PASSWORD: admin
@@ -29,11 +33,17 @@ services:
     container_name: node1
     ports:
       - 8001:80 #<port-on-host>:<port-on-container>
+    networks:
+      alarmservice_network:
+        ipv4_address: 172.25.0.101
   node2:
     image: artifactory.transmode.se/tm3k/trunk-hostenv
     container_name: node2
     ports:
       - 8002:80 #<port-on-host>:<port-on-container>
+    networks:
+      alarmservice_network:
+        ipv4_address: 172.25.0.102
   nodes_setup:
     build: nodes_setup
     container_name: nodes_setup
@@ -43,3 +53,24 @@ services:
     links:
       - node1
       - node2
+    networks:
+      alarmservice_network:
+  alarmservice_test:
+    image: se.infinera.metro.service.acceptance.alarm/alarmservice-acceptance-test-all:1.0-SNAPSHOT
+#    restart: unless-stopped
+    container_name: alarmservice_test
+    networks:
+      alarmservice_network:
+    depends_on:
+      - alarmservice
+      - nodes_setup
+    links:
+        - alarmservice
+    entrypoint: ./wait-for-it.sh
+    command: alarmservice:8080 --timeout=20 -- ./entrypoint.sh
+networks:
+  alarmservice_network:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.25.0.0/24 # Allows for 255 addresses
