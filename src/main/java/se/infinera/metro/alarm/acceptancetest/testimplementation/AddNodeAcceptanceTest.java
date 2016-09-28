@@ -15,6 +15,10 @@ import static org.junit.Assert.assertNotNull;
 
 /**
  *  This class would belong to middle layer, "Test Implementation Layer"
+ *
+ *  TODO:
+ *  - Before test, verify that no nodes are added to Alarmservice.
+ *  - Remove nodes after test
  */
 @Slf4j
 @Component
@@ -51,5 +55,7 @@ public class AddNodeAcceptanceTest {
 
         //Then
         assertTrue(nodes.contains(nodeToAdd));
+
+        log.debug("SUCCESS");
     }
 }

@@ -2,14 +2,18 @@ Workflow:
 
 1.
 Make sure you have an alarmservice docker image available.
+
 In project alarmservice run:
     ./gradlew clean build buildDocker
-Find image:
+Verify newly built image exists:
     docker images
 
 2.
 Make sure you have an alarmservice-acceptance-test docker image available
+OBS! Since it is (at the moment at least) a Spring application, and not a
+Spring boot application it must be build as a fat jar.
+
 In this project run:
     ./gradlew clean fatJar buildDocker
-Find image:
+Verify newly built image exists:
     docker images
