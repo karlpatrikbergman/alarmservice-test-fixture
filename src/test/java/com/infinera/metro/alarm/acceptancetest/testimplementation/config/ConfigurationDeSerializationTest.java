@@ -1,11 +1,11 @@
-package se.infinera.metro.alarm.acceptancetest.testimplementation.config;
+package com.infinera.metro.alarm.acceptancetest.testimplementation.config;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
-import se.infinera.metro.alarm.acceptancetest.testimplementation.AlarmServiceDTO;
+import com.infinera.metro.alarm.acceptancetest.testimplementation.AlarmServiceDTO;
 import se.infinera.metro.service.alarm.controller.dto.NodeDTO;
 import se.patrikbergman.java.utility.resource.ResourceString;
 

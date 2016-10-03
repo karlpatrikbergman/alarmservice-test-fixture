@@ -1,5 +1,6 @@
-package se.infinera.metro.alarm.acceptancetest.applicationdriver;
+package com.infinera.metro.alarm.acceptancetest.applicationdriver;
 
+import com.infinera.metro.alarm.acceptancetest.testimplementation.AlarmServiceDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
@@ -7,8 +8,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import se.infinera.metro.alarm.acceptancetest.configuration.TestConfiguration;
-import se.infinera.metro.alarm.acceptancetest.testimplementation.AlarmServiceDTO;
+import com.infinera.metro.alarm.acceptancetest.configuration.TestConfiguration;
 import se.infinera.metro.service.alarm.controller.dto.NodeDTO;
 
 import java.util.List;

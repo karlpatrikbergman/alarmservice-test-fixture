@@ -1,6 +1,6 @@
 
 
-package se.infinera.metro.alarm;
+package com.infinera.metro.alarm;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -10,9 +10,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
-import se.infinera.metro.alarm.acceptancetest.applicationdriver.NodeApi;
-import se.infinera.metro.alarm.acceptancetest.testimplementation.AddNodeAcceptanceTest;
-import se.infinera.metro.alarm.acceptancetest.configuration.TestConfiguration;
+import com.infinera.metro.alarm.acceptancetest.applicationdriver.NodeApi;
+import com.infinera.metro.alarm.acceptancetest.testimplementation.AddNodeAcceptanceTest;
+import com.infinera.metro.alarm.acceptancetest.configuration.TestConfiguration;
 
 @Configuration
 public class AppConfig {

@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-java -Djava.security.egd=file:/dev/./urandom -jar /alarmservice-acceptance-test-all.jar
+exec java -Djava.security.egd=file:/dev/./urandom -jar /alarmservice-acceptance-test-all.jar
 

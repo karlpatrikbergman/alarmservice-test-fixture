@@ -1,3 +1,6 @@
+group 'com.infinera.metro.service.alarm.acceptance'
+version '1.0-SNAPSHOT'
+
 apply plugin: 'java'
 compileJava {
     options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
@@ -6,9 +9,6 @@ compileJava {
 }
 apply plugin: 'idea'
 apply plugin: 'docker'
-
-group 'se.infinera.metro.service.alarm'
-version '1.0-SNAPSHOT'
 
 buildscript {
     repositories {
@@ -19,13 +19,10 @@ buildscript {
     }
 }
 
-group 'se.infinera.metro.service.acceptance.alarm'
-version '1.0-SNAPSHOT'
-
 //create a single Jar with all dependencies
 task fatJar(type: Jar) {
     manifest {
-        attributes 'Main-Class': 'se.infinera.metro.alarm.MainApp'
+        attributes 'Main-Class': 'com.infinera.metro.alarm.MainApp'
     }
     baseName = project.name + '-all'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }

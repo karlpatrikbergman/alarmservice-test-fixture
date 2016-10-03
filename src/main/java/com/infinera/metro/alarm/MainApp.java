@@ -1,9 +1,9 @@
-package se.infinera.metro.alarm;
+package com.infinera.metro.alarm;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import se.infinera.metro.alarm.acceptancetest.testimplementation.AddNodeAcceptanceTest;
+import com.infinera.metro.alarm.acceptancetest.testimplementation.AddNodeAcceptanceTest;
 
 @Slf4j
 

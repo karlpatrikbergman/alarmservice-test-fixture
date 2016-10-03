@@ -1,4 +1,4 @@
-package se.infinera.metro.alarm.acceptancetest.testimplementation;
+package com.infinera.metro.alarm.acceptancetest.testimplementation;
 
 import lombok.*;
 
