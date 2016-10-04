@@ -9,35 +9,31 @@ compileJava {
 }
 apply plugin: 'idea'
 apply plugin: 'docker'
+apply plugin: 'spring-boot'
 
 buildscript {
+    ext {
+        springBootVersion = '1.4.1.RELEASE'
+    }
     repositories {
         mavenCentral()
     }
     dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath('se.transmode.gradle:gradle-docker:1.2')
     }
 }
 
-//create a single Jar with all dependencies
-task fatJar(type: Jar) {
-    manifest {
-        attributes 'Main-Class': 'com.infinera.metro.alarm.MainApp'
-    }
-    baseName = project.name + '-all'
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
-}
 
 task buildDocker(type: Docker, dependsOn: build) {
 //    push = true
-    applicationName = project.name + '-all'
+    applicationName = project.name
     dockerfile = file('src/main/docker/Dockerfile')
     addFile('src/main/docker/entrypoint.sh', '/entrypoint.sh')
     addFile('src/main/docker/wait-for-it.sh', '/wait-for-it.sh')
     doFirst {
         copy {
-            from fatJar
+            from jar
             into stageDir
         }
     }
@@ -57,13 +53,11 @@ repositories {
 }
 
 dependencies {
-    compile 'com.infinera.metro.service.alarm:alarmservice-api:1.0-SNAPSHOT'
-    compile('org.springframework.boot:spring-boot-starter-web:1.4.0.RELEASE')
-    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.2'
-    compile('com.github.karlpatrikbergman:java-utilities:master')
-    compile('org.projectlombok:lombok:1.16.10')
-    compile 'com.github.karlpatrikbergman:java-utilities:master'
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-test")
+    compile ("org.apache.httpcomponents:httpclient:4.5.2")
+    compile("org.projectlombok:lombok:1.16.10")
 
-    compile("org.springframework.boot:spring-boot-starter-test:1.4.0.RELEASE")
-    compile group: 'junit', name: 'junit', version: '4.12'
+    compile('com.infinera.metro.service.alarm:alarmservice-api:1.0-SNAPSHOT')
+    compile('com.github.karlpatrikbergman:java-utilities:master')
 }

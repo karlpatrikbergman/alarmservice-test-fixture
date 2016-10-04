@@ -7,9 +7,8 @@ yum clean all
 
 VOLUME /tmp
 
-COPY wait-for-it.sh /wait-for-it.sh
-COPY entrypoint.sh /entrypoint.sh
-COPY alarmservice-acceptance-test-all-1.0-SNAPSHOT.jar alarmservice-acceptance-test-all.jar
-RUN sh -c 'touch /alarmservice-acceptance-test-all.jar'
+COPY ["wait-for-it.sh", "entrypoint.sh", "/"]
+COPY ["alarmservice-acceptance-test-1.0-SNAPSHOT.jar", "alarmservice-acceptance-test.jar"]
+RUN sh -c 'touch /alarmservice-acceptance-test.jar'
 
 ENTRYPOINT ["/bin/bash","./entrypoint.sh"]

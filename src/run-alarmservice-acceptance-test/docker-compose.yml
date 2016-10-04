@@ -56,7 +56,7 @@ services:
     networks:
       alarmservice_network:
   alarmservice_test:
-    image: com.infinera.metro.service.alarm.acceptance/alarmservice-acceptance-test-all:1.0-SNAPSHOT
+    image: com.infinera.metro.service.alarm.acceptance/alarmservice-acceptance-test:1.0-SNAPSHOT
 #    restart: unless-stopped
     container_name: alarmservice_test
     networks:
