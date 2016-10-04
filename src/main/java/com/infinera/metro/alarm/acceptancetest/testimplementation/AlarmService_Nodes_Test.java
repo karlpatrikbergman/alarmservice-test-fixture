@@ -1,11 +1,15 @@
 package com.infinera.metro.alarm.acceptancetest.testimplementation;
 
+import com.infinera.metro.alarm.AppConfig;
 import com.infinera.metro.alarm.acceptancetest.applicationdriver.NodeApi;
 import com.infinera.metro.alarm.acceptancetest.configuration.TestConfiguration;
+import com.infinera.metro.service.alarm.controller.dto.NodeDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import se.infinera.metro.service.alarm.controller.dto.NodeDTO;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
@@ -21,22 +25,17 @@ import static org.junit.Assert.assertNotNull;
  *  - Remove nodes after test
  */
 @Slf4j
-@Component
-public class AddNodeAcceptanceTest {
-
-    private final NodeApi nodeApi;
-    private final TestConfiguration testConfiguration;
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = AppConfig.class)
+public class AlarmService_Nodes_Test {
 
     @Autowired
-    public AddNodeAcceptanceTest(NodeApi nodeApi, TestConfiguration testConfiguration) {
-        this.nodeApi = nodeApi;
-        this.testConfiguration = testConfiguration;
-    }
+    private NodeApi nodeApi;
+    @Autowired
+    private TestConfiguration testConfiguration;
 
-    public void run() {
-        log.debug("Running the acceptance test...");
-        log.debug("Nodes config: {}", testConfiguration.getNodesConfiguration());
-
+    @Test
+    public void add_node_test() {
         NodeDTO nodeConfig = testConfiguration.getNodesConfiguration().get(0);
 
         //Given
@@ -47,6 +46,7 @@ public class AddNodeAcceptanceTest {
                 .password(nodeConfig.getPassword())
                 .build();
         NodeDTO addedNode = nodeApi.addNode(nodeToAdd);
+
         assertNotNull(addedNode);
         assertEquals(nodeToAdd, addedNode);
 

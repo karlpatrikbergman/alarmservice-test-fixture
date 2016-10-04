@@ -15,7 +15,7 @@ services:
     links:
     - alarmservice_db
     entrypoint: ./wait-for-it.sh
-    command: alarmservice_db:3306 --timeout=20 -- ./entrypoint.sh
+    command: alarmservice_db:3306 --timeout=20 --strict -- ./entrypoint.sh
   alarmservice_db:
     image: mariadb:latest
     container_name: alarmservice_db
@@ -67,7 +67,7 @@ services:
     links:
         - alarmservice
     entrypoint: ./wait-for-it.sh
-    command: alarmservice:8080 --timeout=20 -- ./entrypoint.sh
+    command: alarmservice:8080 --timeout=30 --strict -- ./entrypoint.sh
 networks:
   alarmservice_network:
     driver: bridge

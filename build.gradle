@@ -31,7 +31,7 @@ task fatJar(type: Jar) {
 
 task buildDocker(type: Docker, dependsOn: build) {
 //    push = true
-    applicationName = jar.baseName + '-all'
+    applicationName = project.name + '-all'
     dockerfile = file('src/main/docker/Dockerfile')
     addFile('src/main/docker/entrypoint.sh', '/entrypoint.sh')
     addFile('src/main/docker/wait-for-it.sh', '/wait-for-it.sh')
@@ -57,7 +57,7 @@ repositories {
 }
 
 dependencies {
-    compile 'se.infinera.metro.service.alarm:alarmservice-api:1.0-SNAPSHOT'
+    compile 'com.infinera.metro.service.alarm:alarmservice-api:1.0-SNAPSHOT'
     compile('org.springframework.boot:spring-boot-starter-web:1.4.0.RELEASE')
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.2'
     compile('com.github.karlpatrikbergman:java-utilities:master')

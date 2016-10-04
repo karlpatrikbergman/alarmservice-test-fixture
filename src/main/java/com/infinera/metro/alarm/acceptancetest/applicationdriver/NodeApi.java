@@ -9,7 +9,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import com.infinera.metro.alarm.acceptancetest.configuration.TestConfiguration;
-import se.infinera.metro.service.alarm.controller.dto.NodeDTO;
+import com.infinera.metro.service.alarm.controller.dto.NodeDTO;
 
 import java.util.List;
 

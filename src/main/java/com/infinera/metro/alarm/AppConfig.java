@@ -11,7 +11,7 @@ import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 import com.infinera.metro.alarm.acceptancetest.applicationdriver.NodeApi;
-import com.infinera.metro.alarm.acceptancetest.testimplementation.AddNodeAcceptanceTest;
+import com.infinera.metro.alarm.acceptancetest.testimplementation.AlarmService_Nodes_Test;
 import com.infinera.metro.alarm.acceptancetest.configuration.TestConfiguration;
 
 @Configuration
@@ -25,8 +25,8 @@ public class AppConfig {
     }
 
     @Bean
-    public AddNodeAcceptanceTest addNodeAcceptanceTest() {
-        return new AddNodeAcceptanceTest(nodeApi(), testConfig());
+    public AlarmService_Nodes_Test addNodeAcceptanceTest() {
+        return new AlarmService_Nodes_Test();
     }
 
     //Part of Application Driver

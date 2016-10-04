@@ -3,9 +3,9 @@ package com.infinera.metro.alarm.acceptancetest.configuration;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.infinera.metro.alarm.acceptancetest.testimplementation.AlarmServiceDTO;
+import com.infinera.metro.service.alarm.controller.dto.NodeDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import se.infinera.metro.service.alarm.controller.dto.NodeDTO;
 import se.patrikbergman.java.utility.resource.ResourceString;
 
 import java.io.IOException;
