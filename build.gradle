@@ -56,8 +56,8 @@ artifactory {
         contextUrl = "${artifactory_contextUrl}" //The base Artifactory URL for the resolver
         repository {
             repoKey = 'libs-snapshot-local'     //The Artifactory (preferably virtual) repository key to resolve from
-            username = 'admin'                //Optional resolver user name (leave out to use anonymous resolution)
-            password = 'password'             //The resolver password
+            username = "${artifactory_user}"                //Optional resolver user name (leave out to use anonymous resolution)
+            password = "${artifactory_password}"             //The resolver password
             //maven = true                      //Resolve Maven-style artifacts and descriptors (true by default)
         }
     }
@@ -69,6 +69,11 @@ repositories {
     mavenCentral()
     mavenLocal()
     maven { url "https://jitpack.io" } //Get a git project into build
+}
+
+task listrepos << {
+    println "Repositories:"
+    project.repositories.each { println "Name: " + it.name + "; url: " + it.url }
 }
 
 /** Dependency settings **/

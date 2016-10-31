@@ -39,6 +39,7 @@ public class AlarmService_Nodes_Test {
         NodeDTO nodeConfig = testConfiguration.getNodesConfiguration().get(0);
 
         //Given
+        //A node
         NodeDTO nodeToAdd = NodeDTO.builder()
                 .ipAddress(nodeConfig.getIpAddress())
                 .port(nodeConfig.getPort())
@@ -46,6 +47,7 @@ public class AlarmService_Nodes_Test {
                 .password(nodeConfig.getPassword())
                 .build();
 
+        //Node is added to alarmservice
         NodeDTO addedNode = nodeApi.addNode(nodeToAdd);
 
         //When
