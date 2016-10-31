@@ -45,17 +45,17 @@ public class AlarmService_Nodes_Test {
                 .userName(nodeConfig.getUserName())
                 .password(nodeConfig.getPassword())
                 .build();
-        NodeDTO addedNode = nodeApi.addNode(nodeToAdd);
 
-        assertNotNull(addedNode);
-        assertEquals(nodeToAdd, addedNode);
+        NodeDTO addedNode = nodeApi.addNode(nodeToAdd);
 
         //When
         List<NodeDTO> nodes = nodeApi.getNodes();
 
         //Then
+        assertNotNull(addedNode);
+        assertEquals(nodeToAdd, addedNode);
         assertTrue(nodes.contains(nodeToAdd));
 
-        log.debug("SUCCESS");
+        log.debug("\n\n***********\n* SUCCESS *\n***********\n\n");
     }
 }

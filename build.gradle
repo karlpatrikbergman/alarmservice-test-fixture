@@ -66,6 +66,8 @@ artifactory {
 /** Repository settings **/
 repositories {
     jcenter()
+    mavenCentral()
+    mavenLocal()
     maven { url "https://jitpack.io" } //Get a git project into build
 }
 
@@ -77,5 +79,5 @@ dependencies {
     compile("org.projectlombok:lombok:1.16.10")
 
     compile(group: 'com.infinera.metro.service.alarm', name: 'alarmservice-api', version: '1.0-20161011.115912-2')
-    compile('com.github.karlpatrikbergman:java-utilities:master')
+    compile('se.patrikbergman.java:java-utilities:1.0-SNAPSHOT')
 }

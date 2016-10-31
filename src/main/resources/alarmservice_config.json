@@ -1,6 +1,4 @@
 {
   "host": "alarmservice",
-  "port": 8080,
-  "userName": "",
-  "password": ""
+  "port": 8080
 }
