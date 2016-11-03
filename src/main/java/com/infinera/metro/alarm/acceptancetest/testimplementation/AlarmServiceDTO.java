@@ -10,7 +10,5 @@ public class AlarmServiceDTO {
     @NonNull
     private String host;
     private int port;
-//    @NonNull private String userName;
-//    @NonNull private String password;
 }
 

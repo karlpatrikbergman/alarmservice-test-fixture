@@ -8,6 +8,13 @@ app=`basename "$0"`
 export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 set -x
 
+# Reads lines in nodes.txt. Each line contains three columns:
+# 1. node host name (mapped by docker-compose)
+# 2. node port
+# 3. traffic card to be added to node using nodes REST api
+#
+# TODO: Provide path to nodes.txt as argument to add_boards()
+#
 function add_boards() {
     local host
     local port

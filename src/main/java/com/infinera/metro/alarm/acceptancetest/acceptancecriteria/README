@@ -3,6 +3,61 @@ From Continuous Delivery chapter 8:
  completely dispense with the acceptance criteria layer and express the
  acceptance criteria in the implementation of the test."
 
+"... you can also take the approach of encoding the acceptance criteria
+ in the names of your xUnit tests. You can then run your acceptance
+ tests directly from the xUnit test framework."
+
 Me:
- I will try to go with this approach to begin with, and skip acceptance criteria layer
- (and also Cucumber and the likes).
+ I will try to go with this approach to begin with, and skip acceptance
+ criteria layer (and Cucumber and the likes).
+
+"It is crucial that your test implementations use your domain language and
+ do not contain details of how to interact with the application."
+
+"The level of abstraction on an acceptance test should answer questions
+ like 'If I place an order, is it accepted?' or 'If I exceed my credit
+ limit, am I correctly informed?'."
+
+The process of creating executable specifications:
+ 1. Discuss acceptance criteria for your story with your customer
+
+ 2. Write them down in executable format:
+
+    Scenario: User order should debit account correctly
+    Given there is an instrument called bond*
+    And there is a user called Dave with 50 dollars in his account
+    When I log in as Dave
+    And I select instrument bond
+    And I place an order to buy 4 at 10 dollars each
+    And the order is sucessful
+    Then I have 10 dollars left on my account
+
+* Bond = Obligation
+
+ 3. Write an implementation for the test which uses only the domain language,
+    accessing the application driver layer
+
+    Given
+    admin_api.create_instrument(bond)
+
+    Given
+    admin_api.create_user(user, amount)
+
+    When
+    trading_api.login(user)
+
+    When
+    trading_api.select_instrument(bond)
+
+    When
+    trading_api.place_order(quantity, amount)
+
+    When
+    trading_api.confirm_order_success(instrument, quantity, amount)
+
+    Then
+    trading_api.confirm_account_balance(balance)
+
+
+ 4. Create an application driver layer which talks to the system under test.
+

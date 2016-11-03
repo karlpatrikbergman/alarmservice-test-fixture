@@ -1,0 +1,10 @@
+Acceptance tests are derived from acceptance criteria.
+The acceptance criteria for your application must be written with
+automation in mind and must follow the INVEST principles.
+
+I   = independent
+N   = negotiable
+V   = valuable
+E   = estimable
+S   = small
+T   = testable

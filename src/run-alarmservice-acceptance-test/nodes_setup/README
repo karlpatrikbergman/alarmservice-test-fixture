@@ -1,0 +1,8 @@
+The file nodes.txt contains three columns
+- node host name (mapped by docker-compose)
+- node port
+- traffic card to be added using nodes REST api
+
+Example:
+node1 80 tp10g
+node2 80 tp10g

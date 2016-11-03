@@ -1,10 +1,11 @@
 package com.infinera.metro.alarm.acceptancetest.testimplementation;
 
 import com.infinera.metro.alarm.AppConfig;
-import com.infinera.metro.alarm.acceptancetest.applicationdriver.NodeApi;
-import com.infinera.metro.alarm.acceptancetest.configuration.TestConfiguration;
-import com.infinera.metro.service.alarm.controller.dto.NodeDTO;
+import com.infinera.metro.alarm.acceptancetest.applicationdriver.Node;
+import com.infinera.metro.alarm.acceptancetest.applicationdriver.AlarmServiceApi;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,51 +14,46 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
-import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  *  This class would belong to middle layer, "Test Implementation Layer"
  *
- *  TODO:
- *  - Before test, verify that no nodes are added to Alarmservice.
- *  - Remove nodes after test
  */
 @Slf4j
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = AppConfig.class)
 public class AlarmService_Nodes_Test {
 
+    /**
+     * Since a JUnit test needs exactly one public zero-argument constructor we must use
+     * field injection instead of constructor injection
+     */
     @Autowired
-    private NodeApi nodeApi;
-    @Autowired
-    private TestConfiguration testConfiguration;
+    private AlarmServiceApi alarmServiceApi;
+
+    @Before
+    public void verifyInitialState() {
+        List<Node> nodesAddedToAlarmService = alarmServiceApi.getAddedNodes();
+        log.debug("Verifying inital state, nodesAddedToAlarmService.isEmpty(): {}", nodesAddedToAlarmService.isEmpty());
+        assertTrue(nodesAddedToAlarmService.isEmpty());
+    }
 
     @Test
-    public void add_node_test() {
-        NodeDTO nodeConfig = testConfiguration.getNodesConfiguration().get(0);
-
+    public void addingNodeShouldResultInNodeAdded() {
         //Given
-        //A node
-        NodeDTO nodeToAdd = NodeDTO.builder()
-                .ipAddress(nodeConfig.getIpAddress())
-                .port(nodeConfig.getPort())
-                .userName(nodeConfig.getUserName())
-                .password(nodeConfig.getPassword())
-                .build();
-
-        //Node is added to alarmservice
-        NodeDTO addedNode = nodeApi.addNode(nodeToAdd);
-
+        Node addedNode = alarmServiceApi.addNode();
         //When
-        List<NodeDTO> nodes = nodeApi.getNodes();
-
+        List<Node> nodesAddedToAlarmService = alarmServiceApi.getAddedNodes();
         //Then
-        assertNotNull(addedNode);
-        assertEquals(nodeToAdd, addedNode);
-        assertTrue(nodes.contains(nodeToAdd));
+        assertTrue(nodesAddedToAlarmService.contains(addedNode));
 
+        log.debug("Found node {}", addedNode);
         log.debug("\n\n***********\n* SUCCESS *\n***********\n\n");
+    }
+
+    @After
+    public void cleanUpAfterTest() {
+        alarmServiceApi.removeAllNodes();
     }
 }

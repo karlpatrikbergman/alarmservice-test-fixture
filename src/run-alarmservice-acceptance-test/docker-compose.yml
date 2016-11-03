@@ -10,6 +10,7 @@ services:
       - 8080:8080
     networks:
       alarmservice_network:
+        ipv4_address: 172.25.0.100
     depends_on:
     - alarmservice_db
     links:
@@ -55,19 +56,6 @@ services:
       - node2
     networks:
       alarmservice_network:
-  alarmservice_test:
-    image: com.infinera.metro.service.alarm.acceptance/alarmservice-acceptance-test:1.0-SNAPSHOT
-#    restart: unless-stopped
-    container_name: alarmservice_test
-    networks:
-      alarmservice_network:
-    depends_on:
-      - alarmservice
-      - nodes_setup
-    links:
-        - alarmservice
-    entrypoint: ./wait-for-it.sh
-    command: alarmservice:8080 --timeout=30 --strict -- ./entrypoint.sh
 networks:
   alarmservice_network:
     driver: bridge
