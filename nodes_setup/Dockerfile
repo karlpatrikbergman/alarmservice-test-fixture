@@ -1,5 +1,4 @@
 FROM centos:7
-
 RUN yum update -y && yum clean all
 WORKDIR /app
 ADD node.sh /app/node.sh

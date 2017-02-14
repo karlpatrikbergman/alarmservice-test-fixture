@@ -1,0 +1,6 @@
+version: "2"
+services:
+  alarmservice-acceptance-test:
+    image: localhost:5000/alarmservice/alarmservice-acceptance-test:latest
+    build: .
+    container_name: alarmservice-acceptance-test

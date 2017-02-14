@@ -71,3 +71,7 @@ crashlytics-build.properties
 
 gradle/
 src/test/java/se/infinera/metro/microservice/alarm/MySketchBoard.java
+/delete-when-certain/
+delete-when-certain/
+!/workbench.sh
+/workbench.sh

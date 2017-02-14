@@ -1,7 +1,7 @@
 version: "2"
 services:
   alarmservice:
-    image: com.infinera.metro.service.alarm/alarmservice:1.0-SNAPSHOT
+    image: localhost:5000/alarmservice:latest
     restart: unless-stopped
     container_name: alarmservice
     environment:
@@ -18,10 +18,8 @@ services:
     entrypoint: ./wait-for-it.sh
     command: alarmservice_db:3306 --timeout=20 --strict -- ./entrypoint.sh
   alarmservice_db:
-    image: mariadb:latest
+    image: mariadb:10.1
     container_name: alarmservice_db
-#    ports:
-#      - 3307:3306 #<port-on-host>:<port-on-container>
     networks:
         alarmservice_network:
     environment:
@@ -30,7 +28,7 @@ services:
       MYSQL_DATABASE: alarmservice
       MYSQL_ROOT_PASSWORD: root
   node1:
-    image: artifactory.transmode.se/tm3k/trunk-hostenv
+    image: se-artif-prd.infinera.com/tm3k/trunk-hostenv:28.1
     container_name: node1
     ports:
       - 8001:80 #<port-on-host>:<port-on-container>
@@ -38,7 +36,7 @@ services:
       alarmservice_network:
         ipv4_address: 172.25.0.101
   node2:
-    image: artifactory.transmode.se/tm3k/trunk-hostenv
+    image: se-artif-prd.infinera.com/tm3k/trunk-hostenv:28.1
     container_name: node2
     ports:
       - 8002:80 #<port-on-host>:<port-on-container>

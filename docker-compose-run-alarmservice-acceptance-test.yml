@@ -1,8 +1,8 @@
 version: "2"
 services:
-  alarmservice_test:
-    image: com.infinera.metro.service.alarm.acceptance/alarmservice-acceptance-test:1.0-SNAPSHOT
-    container_name: alarmservice_test
+  alarmservice-acceptance-test:
+    image: localhost:5000/alarmservice/alarmservice-acceptance-test
+    container_name: alarmservice-acceptance-test
     networks:
       alarmservice_network:
     depends_on:
