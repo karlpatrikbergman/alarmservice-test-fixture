@@ -1,4 +1,7 @@
 # How to
+If you are interested in automated functional acceptance tests according to Jez Humble and David Farley described
+in their book "Continuous Delivery", read my presentation [here](https://atlas.transmode.se/bitbucket/users/pabe/repos/alarmservice-acceptance-test/browse/Automated%20Functional%20Tests.pdf)
+
 ### Prerequisites
 docker-compose and docker installed
 ## Set up test fixture and run acceptance test from IntelliJ
