@@ -75,3 +75,5 @@ src/test/java/se/infinera/metro/microservice/alarm/MySketchBoard.java
 delete-when-certain/
 !/workbench.sh
 /workbench.sh
+/note
+note
