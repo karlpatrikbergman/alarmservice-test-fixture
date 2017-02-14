@@ -13,7 +13,7 @@ This will bring up a number of docker containers running Alarmservice, MariaDB,
 and two TM nodes. It will also run a container (once) that adds cards to the TM nodes.
 
 Note:
-Alarmservice docker image must be build and pushed first.
+[Alarmservice](https://atlas.transmode.se/bitbucket/users/pabe/repos/alarmservice/browse) docker image must be build and pushed first.
  
 #### Run alarmservice-acceptance-test from IDE
 Right click on:  
