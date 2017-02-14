@@ -4,6 +4,9 @@ in their book "Continuous Delivery", read my presentation [here](https://atlas.t
 
 ### Prerequisites
 docker-compose and docker installed
+
+***
+
 ## Set up test fixture and run acceptance test from IntelliJ
 #### Set up text fixture
 ```shell
@@ -14,13 +17,15 @@ and two TM nodes. It will also run a container (once) that adds cards to the TM 
 
 Note:
 [Alarmservice](https://atlas.transmode.se/bitbucket/users/pabe/repos/alarmservice/browse) docker image must be build and pushed first.
- 
+  
 #### Run alarmservice-acceptance-test from IDE
 Right click on:  
 com.infinera.metro.alarm.MainApp  
 and choose run (or ctrl-shift-10)
 
 This will run tests against previously started test fixture.
+
+***
 
 ## Set up test fixture and run acceptance test with docker-compose 
 
