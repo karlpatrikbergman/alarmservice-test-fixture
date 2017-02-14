@@ -1,7 +1,7 @@
 version: "2"
 services:
   alarmservice-acceptance-test:
-    image: localhost:5000/alarmservice/alarmservice-acceptance-test
+    image: localhost:5000/alarmservice-acceptance-test:latest
     container_name: alarmservice-acceptance-test
     networks:
       alarmservice_network:
