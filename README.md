@@ -17,7 +17,8 @@ and two TM nodes. It will also run a container (once) that adds cards to the TM 
 
 Note:
 [Alarmservice](https://atlas.transmode.se/bitbucket/users/pabe/repos/alarmservice/browse) docker image must be build and pushed first.
-  
+
+   
 #### Run alarmservice-acceptance-test from IDE
 Right click on:  
 com.infinera.metro.alarm.MainApp  
@@ -34,6 +35,7 @@ This will run tests against previously started test fixture.
 $ docker-compose build alarmservice-acceptance-test 
 ``` 
 docker-compose will by default use docker-compose.yml file  
+
 
 #### Run local docker registry
 ```shell
