@@ -1,4 +1,6 @@
 TODO:
+Use latest version of springboot 1.5.1-RELEASE, and plugin: 'org.springframework.boot'
+
 Make openjdk-alpine image work. I get weird error on wait_for_it.sh
 
 FROM openjdk:8-jdk-alpine

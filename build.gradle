@@ -17,7 +17,6 @@ buildscript {
 
 apply plugin: 'com.jfrog.artifactory'
 apply plugin: 'idea'
-apply plugin: 'docker'
 apply plugin: 'spring-boot'
 apply plugin: 'java'
 
@@ -32,21 +31,6 @@ test {
     //Show that tests are run in the command-line output
     testLogging {
         events 'started', 'passed'
-    }
-}
-
-/** Docker plugin settings **/
-task buildDocker(type: Docker, dependsOn: build) {
-//    push = true
-    applicationName = project.name
-    dockerfile = file('src/main/docker/Dockerfile')
-    addFile('src/main/docker/entrypoint.sh', '/entrypoint.sh')
-    addFile('src/main/docker/wait-for-it.sh', '/wait-for-it.sh')
-    doFirst {
-        copy {
-            from jar
-            into stageDir
-        }
     }
 }
 
@@ -65,7 +49,7 @@ artifactory {
 
 /** Repository settings **/
 repositories {
-    jcenter()
+//    jcenter() //This repo is very slow, avoid if you can!
     mavenCentral()
     mavenLocal()
     maven { url "https://jitpack.io" } //Get a git project into build
