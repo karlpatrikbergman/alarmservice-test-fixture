@@ -35,17 +35,17 @@ test {
 }
 
 /** Artifactory settings **/
-artifactory {
-    resolve {
-        contextUrl = "${artifactory_contextUrl}" //The base Artifactory URL for the resolver
-        repository {
-            repoKey = 'libs-snapshot-local'     //The Artifactory (preferably virtual) repository key to resolve from
-            username = "${artifactory_user}"                //Optional resolver user name (leave out to use anonymous resolution)
-            password = "${artifactory_password}"             //The resolver password
-            //maven = true                      //Resolve Maven-style artifacts and descriptors (true by default)
-        }
-    }
-}
+//artifactory {
+//    resolve {
+//        contextUrl = "${artifactory_contextUrl}" //The base Artifactory URL for the resolver
+//        repository {
+//            repoKey = 'libs-snapshot-local'     //The Artifactory (preferably virtual) repository key to resolve from
+//            username = "${artifactory_user}"                //Optional resolver user name (leave out to use anonymous resolution)
+//            password = "${artifactory_password}"             //The resolver password
+//            //maven = true                      //Resolve Maven-style artifacts and descriptors (true by default)
+//        }
+//    }
+//}
 
 /** Repository settings **/
 repositories {
@@ -68,6 +68,11 @@ dependencies {
     compile("org.projectlombok:lombok:1.16.10")
     compile("ma.glasnost.orika:orika-core:1.4.6")
 
-    compile(group: 'com.infinera.metro.service.alarm', name: 'alarmservice-api', version: '1.0-20161011.115912-2')
-    compile('se.patrikbergman.java:java-utilities:1.0-SNAPSHOT')
+    compile('com.github.karlpatrikbergman:alarmservice:master-SNAPSHOT')
+    compile('com.github.karlpatrikbergman:java-utilities:master-SNAPSHOT')
+    compile('com.github.karlpatrikbergman:docker-compose-file-parser:master-SNAPSHOT')
+}
+
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
